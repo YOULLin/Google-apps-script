@@ -55,7 +55,7 @@ function CaseStatus(c){
   var cs = c;
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName('12月');
-  //查看表單目前案件狀態
+  //查看試算表目前案件狀態
   if (sheet != null){
      var headers = sheet.getRange(1,1,1,sheet.getLastColumn()).getValues();
      var actRng = sheet.getActiveRange();
