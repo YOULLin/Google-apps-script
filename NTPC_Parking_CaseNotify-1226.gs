@@ -18,7 +18,7 @@
 var token = "";  //對外正式群組token
 var Mytoken = ""; //公司內通報token
 var MyGrptoken = ""; //測試Mytoken
-//未完成通報->公司
+//未完成通報->主要通知者:公司內部
 function unFinishedCaseNotify(){
   //通報今天是否有未完成案件
   var m1 = CaseStatus(1);
@@ -32,7 +32,7 @@ function unFinishedCaseNotify(){
   }
 }
 
-//未退件通報->新北
+//未退件通報->主要通知者:公司外的人
 function unReturnCaseNotify(){
   //通報今天是否有未退件案件
   var m2 = CaseStatus(2);
