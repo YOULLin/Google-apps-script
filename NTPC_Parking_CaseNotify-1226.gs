@@ -15,17 +15,15 @@
 
 /*------案件通報主程式------*/
 //取得通報用戶token
-var token = "";  //正式群組token
-var Mytoken = ""; //公司內個人通報token
+var token = "";  //對外正式群組token
+var Mytoken = ""; //公司內通報token
 var MyGrptoken = ""; //測試Mytoken
-//未完成通報->圖資部
+//未完成通報->公司
 function unFinishedCaseNotify(){
   //通報今天是否有未完成案件
   var m1 = CaseStatus(1);
-  console.log("m1到底在衝尛!!!"+m1);
   console.log("未完成案件回傳訊息為: "+m1);
   if(m1!=='0'){
-    //sendLineNotify(m1,token);
     sendLineNotify(m1,Mytoken);
   }
   else{
@@ -39,8 +37,8 @@ function unReturnCaseNotify(){
   //通報今天是否有未退件案件
   var m2 = CaseStatus(2);
   console.log("未退件案件回傳訊息為: "+m2);
-  
   if(m2!=='0'){
+    //sendLineNotify(m2,token);
     sendLineNotify(m2,Mytoken);
   }
   else{
