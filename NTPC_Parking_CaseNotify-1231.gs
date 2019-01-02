@@ -23,9 +23,9 @@ var tomDate = Date.parse(tomorrow.toDateString()).valueOf();   //取得明日日
 
 /*------案件通報主程式------*/
 //取得通報用戶token
-var NTPCtoken = "nlfrBTSuQSRk6Ycbejzhbcmny57pXvgUUOTw95vtwNI";  //對外正式群組token
-var InCoptoken = "tTySh6Pgv2KYyx2CI9A1i8oAc2d36OZaYxTV5G9abmN"; //公司內通報token
-var MyGrptoken = "kRpEXRgHESb9gYXyV0R2tYyr7W7cQe4WhyC8H6Ei5pK"; //測試Mytoken
+var NTPCtoken = "";  //對外正式群組token
+var InCoptoken = ""; //公司內通報token
+var MyGrptoken = ""; //測試Mytoken
 
 //未完成通報->主要通知者:公司內部
 function unFinishedCaseNotify(){
