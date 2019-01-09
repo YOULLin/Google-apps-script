@@ -8,7 +8,7 @@
 *    2. 2018/12/26更新:
 *       (1) 分開通報當日未完成案件、未退件案件
 *       (2) 未退件案件通報修正為送件當日和應完成日都通報
-*    3. 2018/12/31更新: 設定通報時間為上班時間和工作日                
+*    3. 2018/12/31更新: 設定通報時間為上班時間和非六日                
 *    4. 2019/01/03更新:
 *       (1) 修正LastRow()未設定第一筆資料尋訪的列數為第1列的錯誤、若出現超過五次無案號欄位的紀錄視同以下欄位無新增案件資料則停止尋訪
 *       (2) 修正隔日無退件資訊則不顯示日期在通報訊息上
@@ -29,9 +29,9 @@ var tomDate = Date.parse(tomorrow.toDateString()).valueOf();   //取得明日日
 
 /*------案件通報主程式------*/
 //取得通報用戶token
-var NTPCtoken = "";  //駐點正式群組token
-var InCoptoken = ""; //公司內通報token
-var MyGrptoken = ""; //測試Mytoken
+var NTPCtoken = "nlfrBTSuQSRk6Ycbejzhbcmny57pXvgUUOTw95vtwNI";  //新北交通正式群組token
+var InCoptoken = "tTySh6Pgv2KYyx2CI9A1i8oAc2d36OZaYxTV5G9abmN"; //公司內通報token
+var MyGrptoken = "kRpEXRgHESb9gYXyV0R2tYyr7W7cQe4WhyC8H6Ei5pK"; //測試Mytoken
 
 //未完成通報->主要通知者:公司內部
 function unFinishedCaseNotify(){
@@ -254,7 +254,7 @@ function CaseStatus(c){
 function WorkHours(){
   var now = new Date();
   var nowdate = now.toDateString();
-  var starttime = nowdate+" "+"09:00:00";
+  var starttime = nowdate+" "+"00:00:00";
   var offtime = nowdate+" "+"18:30:00";
   var ntime = Date.parse(now.toString()).valueOf();
   var stime = Date.parse(starttime).valueOf();
@@ -310,11 +310,11 @@ function LastRow(colsheet, columnname){
   var ri = actrange.getRowIndex();
   var sheetLastRow = colsheet.getLastRow();
   var countRaws = 0;
+  var nocase = 0;  //計算無案號的欄位數
+  ri=2;
   for(var j=1;j<=sheetLastRow;j++){
     //超過五次案號欄位無填入資料視同以下無案件資訊就停止尋訪
-    var nocase = 0;
     if(nocase<=5){
-      ri +=1;
       var rawValue = (colsheet.getRange(ri,col).getValue()).toString();
       if(strIsNull(rawValue)===false || rawValue !== ""){
         countRaws+=1;
@@ -325,6 +325,7 @@ function LastRow(colsheet, columnname){
         nocase++;
         console.log('此欄無案號第'+nocase+'次');
       }
+      ri +=1;
     }
   }
   return countRaws;
